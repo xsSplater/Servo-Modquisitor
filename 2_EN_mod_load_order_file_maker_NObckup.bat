@@ -304,14 +304,16 @@ cls
 	echo.)>mod_load_order.txt
 REM )
 
-goto LOGMEIN_CHECK
+goto CHARACTERGRID_CHECK
 
 
 REM FIRST, CHECK/ADD THE MODS THAT MUST BE AT THE TOP OF THE LIST...
 REM ╔═══════════════════════════════════════════╗
 REM ║ SORTING RULES 1:							║
 REM ╠═══════════════════════════════════════════╣
+REM ╟+ CharacterGrid							║
 REM ╟+ LogMeIn									║
+REM ╟+ Reconnect								║
 REM ╟+ psych_ward								║
 REM ╟+ DarktideLocalServer						║
 REM ╟+ └─Audio									║
@@ -319,14 +321,35 @@ REM ╟+ master_item_community_patch				║
 REM ╚═══════════════════════════════════════════╝
 
 
+:CHARACTERGRID_CHECK
+REM CHARACTER GRID - Changes the display of the character menu from a list to a tile.
+
+REM IF THERE IS NO SUCH, WE GO FURTHER. OTHERWISE WE ADD IT TO THE LIST...
+if NOT exist CharacterGrid (
+	goto LOGMEIN_CHECK
+) else (
+	echo CharacterGrid>>mod_load_order.txt
+)
+
 :LOGMEIN_CHECK
-REM LOGMEIN - Must be first to be able to load straight into the character selection menu past the welcome screen.
+REM LOGMEIN - Should be one of the first to be able to load the character select menu immediately after the welcome screen.
 
 REM IF THERE IS NO SUCH, WE GO FURTHER. OTHERWISE WE ADD IT TO THE LIST...
 if NOT exist LogMeIn (
-	goto PSYCH_WARD_CHECK
+	goto RECONNECT_CHECK
 ) else (
 	echo LogMeIn>>mod_load_order.txt
+)
+
+:RECONNECT_CHECK
+REM RECONNECT - Use /retry command or keybind to return to main menu so you can reconnect quickly.
+
+
+REM IF THERE IS NO SUCH, WE GO FURTHER. OTHERWISE WE ADD IT TO THE LIST...
+if NOT exist Reconnect (
+	goto PSYCH_WARD_CHECK
+) else (
+	echo Reconnect>>mod_load_order.txt
 )
 
 :PSYCH_WARD_CHECK
@@ -423,10 +446,11 @@ if NOT exist master_item_community_patch (
 goto ANIMATION_EVENTS_CHECK
 
 
-REM CHECKING/ADDING ANIMATION EVENTS AND SCOREBOARD IF THEY EXIST...
+REM CHECK/ADD ANIMATION EVENTS AND SCOREBOARD IF THEY EXIST...
 REM ╔═══════════════════════════════════════════╗
 REM ║ SORTING RULES 2:							║
 REM ╠═══════════════════════════════════════════╣
+REM ╟+ CharacterGrid							║
 REM ╟+ LogMeIn									║
 REM ╟+ psych_ward								║
 REM ╟+ DarktideLocalServer						║
@@ -553,10 +577,11 @@ echo.
 goto SCOREBOARD_AMMOS_CHECK
 
 
-REM CHECKING/ADDING ALL SCOREBOARD PLUGINS...
+REM CHECK/ADD ALL SCOREBOARD PLUGINS...
 REM ╔═══════════════════════════════════════════╗
 REM ║ SORTING RULES 3:							║
 REM ╠═══════════════════════════════════════════╣
+REM ╟+ CharacterGrid							║
 REM ╟+ LogMeIn									║
 REM ╟+ psych_ward								║
 REM ╟+ DarktideLocalServer						║
@@ -998,10 +1023,11 @@ REM ---------------------------/SCOREBOARD PLUGINS------------------------------
 goto WEAPON_CUSTOMIZATION_CHECK
 
 
-REM CHECKING/ADDING WEAPON CUSTOMIZATION AND ALL PLUGINS TO THE LIST...
+REM CHECK/ADD WEAPON CUSTOMIZATION AND ALL PLUGINS TO THE LIST...
 REM ╔═══════════════════════════════════════════╗
 REM ║ SORTING RULES 4:							║
 REM ╠═══════════════════════════════════════════╣
+REM ╟+ CharacterGrid							║
 REM ╟+ LogMeIn									║
 REM ╟+ psych_ward								║
 REM ╟+ DarktideLocalServer						║
@@ -1409,7 +1435,7 @@ if NOT exist weapon_customization_mt_stuff (
 	goto WEAPON_CUSTOMIZATION_NO_SCOPE_CHECK
 ) else (
 	REM IF WEAPON CUSTOMIZATION IS NOT INSTALLED - ERROR‼ OTHERWISE WE ADD IT TO THE LIST...
-	if NOT exist weapon_customization1 (
+	if NOT exist weapon_customization (
 cls
 color 0C
 REM Reddish 100х27
@@ -1585,10 +1611,11 @@ REM ---------------------------/WEAPON CUSTOMIZATION PLUGINS--------------------
 goto CHATBLOCK_CHECK
 
 
-REM CHECKING/ADDING HYBRID SPRINT AND GUARANTEE... TO THE LIST OF MODS, AND ALSO ADDING CHAT BLOCK, MULTIBIND, TOGGLE ALT FIRE BEFORE THEM SO THAT THEY WORK CORRECTLY...
+REM CHECK/ADD HYBRID SPRINT AND GUARANTEE... TO THE LIST OF MODS, AND ALSO ADDING CHAT BLOCK, MULTIBIND, TOGGLE ALT FIRE BEFORE THEM SO THAT THEY WORK CORRECTLY...
 REM ╔═══════════════════════════════════════════╗
 REM ║ SORTING RULES 5:							║
 REM ╠═══════════════════════════════════════════╣
+REM ╟+ CharacterGrid							║
 REM ╟+ LogMeIn									║
 REM ╟+ psych_ward								║
 REM ╟+ DarktideLocalServer						║
@@ -1756,10 +1783,11 @@ if NOT exist guarantee_special_action (
 goto POWER_DI_CHECK
 
 
-REM CHECK/ADD TO THE LIST OF DO I KNOW YOU... MOD, AND ALSO ADD POWER DI AND TRUE LEVEL BEFORE IT SO THAT IT WORKS CORRECTLY...
+REM CHECK/ADD TO THE LIST DO I KNOW YOU MOD, AND ALSO ADD POWER DI AND TRUE LEVEL BEFORE IT SO THAT IT WORKS CORRECTLY...
 REM ╔═══════════════════════════════════════════╗
-REM ║ SORTING RULES 7:							║
+REM ║ SORTING RULES 6:							║
 REM ╠═══════════════════════════════════════════╣
+REM ╟+ CharacterGrid							║
 REM ╟+ LogMeIn									║
 REM ╟+ psych_ward								║
 REM ╟+ DarktideLocalServer						║
@@ -1775,7 +1803,7 @@ REM ╟+   ├─ScoreboardTagCounter					║
 REM ╟+   ├─ovenproof_scoreboard_plugin			║
 REM ╟+   └─scoreboard_vermintide_plugin			║
 REM ╟+ weapon_customization						║
-REM ╟+ │ for_the_drip							║
+REM ╟+ ├─for_the_drip							║
 REM ╟+ │ └─for_the_drip_extra					║
 REM ╟+ ├─weapon_customization_chains			║
 REM ╟+ ├─weapon_customization_no_gun			║
@@ -1815,7 +1843,7 @@ if NOT exist true_level (
 :DO_I_KNOW_YOU_CHECK
 REM IF THERE IS NO SUCH, WE GO FURTHER. OTHERWISE WE CHECK...
 if NOT exist "Do I Know You" (
-	goto MOD_COMPATIBILITY
+	goto SERVO_FRIEND_CHECK
 ) else (
 	REM IF INSTALLED DO I KNOW YOU, CHECK IF POWER DI...
 	if NOT exist Power_DI (
@@ -1862,10 +1890,10 @@ echo.
 				REM REMOVE DO I KNOW YOU AND CONTINUE...
 			If Errorlevel 2 (
 				rmdir /s /q "Do I Know You"
-				goto MOD_COMPATIBILITY
+				goto SERVO_FRIEND_CHECK
 			)
 				REM CONTINUE...
-			If Errorlevel 1 goto MOD_COMPATIBILITY
+			If Errorlevel 1 goto SERVO_FRIEND_CHECK
 	)
 	REM CHECK IF TRUE LEVEL IS INSTALLED...
 	if NOT exist true_level (
@@ -1912,12 +1940,81 @@ echo.
 				REM REMOVE DO I KNOW YOU AND CONTINUE...
 			If Errorlevel 2 (
 				rmdir /s /q "Do I Know You"
-				goto MOD_COMPATIBILITY
+				goto SERVO_FRIEND_CHECK
 			)
 				REM CONTINUE...
-			If Errorlevel 1 goto MOD_COMPATIBILITY
+			If Errorlevel 1 goto SERVO_FRIEND_CHECK
 	)
 	echo Do I Know You>>mod_load_order.txt
+)
+
+
+REM CHECK/ADD TO THE LIST SERVO FRIEND AND ITS PLUGINS...
+REM ADDED BECAUSE SERVO FRIEND AI GENERATED VOICE PLUGIN IS NOT ADDED AUTOMATICALLY FOR UNKNOWN REASON...
+
+REM ╔═══════════════════════════════════════════╗
+REM ║ SORTING RULES 7:							║
+REM ╠═══════════════════════════════════════════╣
+REM ╟+ CharacterGrid							║
+REM ╟+ LogMeIn									║
+REM ╟+ psych_ward								║
+REM ╟+ DarktideLocalServer						║
+REM ╟+ └─Audio									║
+REM ╟+ master_item_community_patch				║
+REM ╟+ animation_events							║
+REM ╟+ └─scoreboard								║
+REM ╟+   ├─ScoreboardAmmos						║
+REM ╟+   ├─ScoreboardDamage						║
+REM ╟+   ├─scoreboard_enhanced_defense_plugin	║
+REM ╟+   ├─ScoreboardExplosive					║
+REM ╟+   ├─ScoreboardTagCounter					║
+REM ╟+   ├─ovenproof_scoreboard_plugin			║
+REM ╟+   └─scoreboard_vermintide_plugin			║
+REM ╟+ weapon_customization						║
+REM ╟+ │ for_the_drip							║
+REM ╟+ │ └─for_the_drip_extra					║
+REM ╟+ ├─weapon_customization_chains			║
+REM ╟+ ├─weapon_customization_no_gun			║
+REM ╟+ ├─weapon_customization_owo				║
+REM ╟+ ├─weapon_customization_syn_edits			║
+REM ╟+ ├─weapon_customization_mt_stuff			║
+REM ╟+ ├─weapon_customization_no_scope			║
+REM ╟+ └─weapon_customization_plugin_xsSythes	║
+REM ╟+ ChatBlock								║
+REM ╟+ MultiBind								║
+REM ╟+ ToggleAltFire							║
+REM ╟+ hybrid_sprint							║
+REM ╟+ guarantee_ability_activation				║
+REM ╟+ guarantee_weapon_swap					║
+REM ╟+ guarantee_special_action					║
+REM ╟+ Power_DI									║
+REM ╟+ │true_level								║
+REM ╟+ └┴─Do I Know You							║
+REM ╟+ servo_friend								║
+REM ╟+ ├─servo_friend_audio_server_plugin		║
+REM ╟+ └─servo_friend_example_addon				║
+REM ╚═══════════════════════════════════════════╝
+
+
+:SERVO_FRIEND_CHECK
+if NOT exist servo_friend (
+	goto SF_AUDIO_PLUGIN_CHECK
+) else (
+	echo servo_friend>>mod_load_order.txt
+)
+
+:SF_AUDIO_PLUGIN_CHECK
+if NOT exist servo_friend_audio_server_plugin (
+	goto SF_EXAMPLE_ADDON_CHECK
+) else (
+	echo servo_friend_audio_server_plugin>>mod_load_order.txt
+)
+
+:SF_EXAMPLE_ADDON_CHECK
+if NOT exist servo_friend_example_addon (
+	goto MOD_COMPATIBILITY
+) else (
+	echo servo_friend_example_addon>>mod_load_order.txt
 )
 
 
@@ -1959,6 +2056,8 @@ REM ╟+ └─Ration Pack							║
 REM ╟+ Stimm Markers VS							║
 REM ╟+ ├─Recolor Stimms							║
 REM ╟+ └─Stimms Pickup Icon						║
+REM ╟+ Teammate Tracker VS						║
+REM ╟+ └─Do I Know You							║
 REM ╚═══════════════════════════════════════════╝
 
 
@@ -3116,7 +3215,7 @@ echo.
 
 :Stimm_Markers_VS_Recolor_Stimms_Pickup_Icon
 if NOT exist stimm_markers (
-	goto DEPRECATED_MODS
+	goto TEAMMATE_TRACKER_VS_DO_I_KNOW_YOU
 ) else (
 	if exist StimmsPickupIcon (
 cls
@@ -3165,7 +3264,7 @@ echo.
 				goto Stimm_Markers_VS_Recolor_Stimms_Pickup_Icon
 			)
 				REM CONTINUE...
-			If Errorlevel 1 goto DEPRECATED_MODS
+			If Errorlevel 1 goto TEAMMATE_TRACKER_VS_DO_I_KNOW_YOU
 	)
 	if exist RecolorStimms (
 cls
@@ -3206,61 +3305,124 @@ echo.
 				REM REMOVE STIMM MARKERS AND CONTINUE...
 			If Errorlevel 3 (
 				rmdir /s /q "stimm_markers"
-				goto DEPRECATED_MODS
+				goto TEAMMATE_TRACKER_VS_DO_I_KNOW_YOU
 			)
 				REM REMOVE RECOLOR STIMMS AND CONTINUE...
 			If Errorlevel 2 (
 				rmdir /s /q "RecolorStimms"
+				goto TEAMMATE_TRACKER_VS_DO_I_KNOW_YOU
+			)
+				REM CONTINUE...
+			If Errorlevel 1 goto TEAMMATE_TRACKER_VS_DO_I_KNOW_YOU
+	)
+)
+
+:TEAMMATE_TRACKER_VS_DO_I_KNOW_YOU
+if NOT exist teammate_tracker (
+	goto DEPRECATED_MODS
+) else (
+	if exist "Do I Know You" (
+cls
+color 0C
+REM Reddish 100х27
+echo.
+echo ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░███████
+echo █▓▒▒▒░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░▓▓▓▓▓██
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓+++ SERVITOR X55-P1473-R ENGAGED +++▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░█████▓▓
+echo ▓█▒░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████▓
+echo ███▓▒▓▓█░░▒▓▓▓// INCOMPATIBILITY DETECTED‼▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▒▓▓█▓░░
+echo ████████░░▒▓▓▓// 'Teammate Tracker' has the same functionality as 'Do I Know You'.▓▓▓▓▓▓▓▓▒░░░░░░░░░
+echo █████▓▒░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░
+echo ██▓░░░░░░░▒▓▓▓// Please disable or remove one to prevent game issues.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░█████▒░
+echo ▓░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ▓█▒░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████▓
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo █░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ▓░░▒▒▒░░░░▒▓▓▓++ Select an action, mortal flesh-unit ++▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░░░░░▓█
+echo ░░░█████░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░░░░░▓█
+echo ▓░░░▒▒▒░░░▒▓▓▓[C] - Bypass all checks for the 'Teammate Tracker'...▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░█▓▒▒▓██
+echo ▓█▒░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████▓
+echo █████░░░░░▒▓▓▓[D] - Purge 'Do I Know You' and continue sorting...▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██▓░░░░
+echo █████░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███░░░░
+echo ████████░░▒▓▓▓[M] - Purge 'Teammate Tracker' and continue sorting...▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░░░░░░░
+echo ███▓▓▓██░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░▒▒▓▒░░
+echo ▓█▒░░░░░░░▒▓▓▓[Q] - I shall perform manual diagnostics...▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓EXIT‼▓▒░░██████▒
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░███████
+echo ▓▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓▓▓▓▓▓▓
+echo ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░███████
+echo.
+		Choice /c CDMQ
+				REM EXIT
+			If Errorlevel 4 exit
+				REM REMOVE TEAMMATE TRACKER AND CONTINUE...
+			If Errorlevel 3 (
+				rmdir /s /q "teammate_tracker"
 				goto DEPRECATED_MODS
+			)
+				REM REMOVE DO I KNOW YOU AND CONTINUE...
+			If Errorlevel 2 (
+				rmdir /s /q "Do I Know You"
+				goto DML_CHECK
 			)
 				REM CONTINUE...
 			If Errorlevel 1 goto DEPRECATED_MODS
 	)
 )
+
 REM OTHER INCOMPATIBLE MODS???
 
 :DEPRECATED_MODS
 
 REM ------------------------------CHECK FOR OUTDATED MODS----------------------------------------------‼
-REM OUTDATED AS OF 05/07/25: (Volley Fire Timer? I Wanna See? Scan Helper?)
-REM ads_crosshair - Deprecated. Closed in favor of Crosshair Remap, which is abandoned and being updated at Crosshair Remap (Continued).
-REM AimSensitivity - Outdated, fixed by FS.
-REM barter_at_once - Obsolete due to changes in-game system in Arsenal.
-REM barter_with_hadron - Obsolete due to changes in-game system in Arsenal.
-REM book_finder - Deprecated. Closed in favor of Collectible Finder, which can be replaced by Markers Improved All-In-One.
-REM CharWallets - Deprecated. Closed in favor of Character Screen Contracts (aka Better Melk)
-REM CombatEvolved - Not updating.
-REM consistent_flamer_backpacks - Outdated, introduced into the game by FS.
-REM contracts_overlay - Outdated, introduced into the game by FS.
+REM OUTDATED AS OF 30.06.25: (Volley Fire Timer?)
+REM ADS Crosshair - Deprecated. Closed in favor of Crosshair Remap, which is abandoned and being updated at Crosshair Remap (Continued).
+REM Aim Sensitivity - Outdated, fixed by FS.
+REM Barter at once - Obsolete due to changes in-game system in Arsenal.
+REM Barter with Hadron - Obsolete due to changes in-game system in Arsenal.
+REM Book finder - Deprecated. Closed in favor of Collectible Finder, which can be replaced by Markers Improved All-In-One.
+REM Char Wallets - Deprecated. Closed in favor of Character Screen Contracts (aka Better Melk)
+REM Combat Evolved - Not updating.
+REM Consistent flamer backpacks - Outdated, introduced into the game by FS.
+REM Contracts overlay - Outdated, introduced into the game by FS.
+REM C-Thru Shields - Doesn't work due to changes in the transparency system.
 REM DankTide - EnemyAudioReplacer - Not updating.
 REM DarkCache - Not updating.
-REM DirectToHadron - Deprecated. Closed in favor of GoToMastery.
-REM emote_wheel_fix - Outdated, fixed by FS.
-REM graphics_options - Not updating.
+REM Direct to Hadron - Deprecated. Closed in favor of GoToMastery.
+REM Emote wheel fix - Outdated, fixed by FS.
+REM Fancy bots - Not updating.
+REM Graphics options - Not updating.
 REM Height Changer - Outdated, introduced into the game by FS.
-REM holier_revenant - Not updating.
-REM IgnorePsykerGrenades - Outdated, fixed by FS.
-REM minimap - Not updating.
-REM ModificationIconColor - Deprecated due to changes in the game's crafting system.
-REM MuteInBackground - Outdated, introduced into the game by FS.
-REM MutePerilSounds - Outdated, introduced into the game by FS.
-REM NoSkull - Not updating.
-REM OpenSteamProfile - Deprecated. Closed in favor of Open Player Profile.
-REM PenanceDetails - Outdated, introduced into the game by FS.
-REM PrivateMissionStatus - Not updating.
-REM PsykerCriticalPerilQuiet - Not updating.
-REM RejectInvitesWhileInMission - Outdated, introduced into the game by FS.
-REM reroll_until_rarity - Deprecated due to changes in the game's crafting system.
-REM RestoreRagdollInteraction - Outdated, introduced into the game by FS.
-REM RetainSelection - Outdated, introduced into the game by FS.
-REM reveal_blessings - Outdated, introduced into the game by FS.
-REM settings_extension - Only needed for the non-updating Graphics Options mod.
-REM SpaceToContinue - Outdated, introduced into the game by FS.
-REM SpectatorHUD - Outdated, introduced into the game by FS.
-REM TruePeril - Deprecated. Closed in favor of PerilGauge.
-REM ui_extension - Not needed for anything.
-REM which_book - Obsolete folder name. The new version is called Distinct Side Mission Icons.
-REM WhichMissions - Obsolete, introduced into the game by FS.
+REM Holier revenant - Not updating.
+REM Ignore Psyker Grenades - Outdated, fixed by FS.
+REM InventoryInspect - Not updating.
+REM Minimap - Not updating.
+REM Modification Icon Color - Deprecated due to changes in the game's crafting system.
+REM Mute in Background - Outdated, introduced into the game by FS.
+REM Mute Peril Sounds - Outdated, introduced into the game by FS.
+REM No Skull - Not updating.
+REM Open Steam Profile - Deprecated. Closed in favor of Open Player Profile.
+REM Penance Details - Outdated, introduced into the game by FS.
+REM Prefer Auric - Obsolete.
+REM Private Mission Status - Not updating.
+REM Psykhanium Default Difficulty - Obsolete.
+REM Quieter Psyker Critical Peril - Not updating.
+REM Reject Invites While in Mission - Outdated, introduced into the game by FS.
+REM Reroll until rarity - Deprecated due to changes in the game's crafting system.
+REM Restore Ragdoll Interaction - Outdated, introduced into the game by FS.
+REM Retain Selection - Outdated, introduced into the game by FS.
+REM Reveal blessings - Outdated, introduced into the game by FS.
+REM Settings extension - Only needed for the non-updating Graphics Options mod.
+REM Sorted mission grid - Deprecated due to changes to the Mission menu.
+REM Space to Continue - Outdated, introduced into the game by FS.
+REM Spectator HUD - Outdated, introduced into the game by FS.
+REM Transparent Shield - Doesn't work due to changes in the transparency system.
+REM True Peril - Deprecated. Closed in favor of PerilGauge.
+REM UI extension - Not needed for anything.
+REM Which book - Obsolete folder name. The new version is called Distinct Side Mission Icons.
+REM Which Missions - Obsolete, introduced into the game by FS.
 
 REM LIST OF OBSOLETE VERSIONS ENHANCED DESCRIPTIONS:
 REM ENLocalizationFIX
@@ -3286,7 +3448,7 @@ REM x_Enhanced_RU_Localization
 REM IF ANY MOD HAS BEEN UPDATED OR IS OUT OF DATE, PLEASE NOTIFY ME‼
 
 REM LIST OF OBSOLETE MODS FOLDERS AND THEIR DESCRIPTIONS...
-set "mod_folders=ads_crosshair AimSensitivity barter_at_once barter_with_hadron book_finder CharWallets CombatEvolved consistent_flamer_backpacks contracts_overlay DarkCache DirectToHadron emote_wheel_fix EnemyAudioReplacer ENLocalizationFIX ENLocalizationFIXAIO ENLocalizationFIXBlessings ENLocalizationFIXCurios ENLocalizationFIXTalents ENLocalizationFIXTraits graphics_options "Height Changer" holier_revenant IgnorePsykerGrenades minimap ModificationIconColor MuteInBackground MutePerilSounds NoSkull OpenSteamProfile PenanceDetails PrivateMissionStatus PsykerCriticalPerilQuiet RejectInvitesWhileInMission reroll_until_rarity RestoreRagdollInteraction RetainSelection reveal_blessings RULocalizationFIX RULocalizationFIXAchievements RULocalizationFIXBlessings RULocalizationFIXBlessnTalentsNames RULocalizationFIXCurios RULocalizationFIXEnemies RULocalizationFIXMenus RULocalizationFIXStores RULocalizationFIXTalents RULocalizationFIXTraits RULocalizationFIXTitles RULocalizationFIXWeaponnames x_Enhanced_RU_Localization settings_extension SpaceToContinue SpectatorHUD TruePeril ui_extension which_book WhichMissions"
+set "mod_folders=ads_crosshair AimSensitivity barter_at_once barter_with_hadron book_finder CharWallets CombatEvolved consistent_flamer_backpacks contracts_overlay CThruShields DarkCache DirectToHadron emote_wheel_fix EnemyAudioReplacer ENLocalizationFIX ENLocalizationFIXAIO ENLocalizationFIXBlessings ENLocalizationFIXCurios ENLocalizationFIXTalents ENLocalizationFIXTraits fancy_bots graphics_options "Height Changer" holier_revenant IgnorePsykerGrenades InventoryInspect minimap ModificationIconColor MuteInBackground MutePerilSounds NoSkull OpenSteamProfile PenanceDetails PreferAuric PrivateMissionStatus PsykaniumDefaultDifficulty PsykerCriticalPerilQuiet RejectInvitesWhileInMission reroll_until_rarity RestoreRagdollInteraction RetainSelection reveal_blessings RULocalizationFIX RULocalizationFIXAchievements RULocalizationFIXBlessings RULocalizationFIXBlessnTalentsNames RULocalizationFIXCurios RULocalizationFIXEnemies RULocalizationFIXMenus RULocalizationFIXStores RULocalizationFIXTalents RULocalizationFIXTraits RULocalizationFIXTitles RULocalizationFIXWeaponnames x_Enhanced_RU_Localization settings_extension sorted_mission_grid SpaceToContinue SpectatorHUD TransparentShield TruePeril ui_extension which_book WhichMissions"
 
 REM DESCRIPTIONS FOR EACH OUTDATED MOD:
 REM ██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██████
@@ -3301,6 +3463,7 @@ set "CharWallets_desc=Deprecated. Closed in favor of Character Screen Contracts.
 set "CombatEvolved_desc= Not updating.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "consistent_flamer_backpacks_desc=Obsolete, introduced into the game by FS.▓▓▓▒░░██████"
 set "contracts_overlay_desc=Obsolete, introduced into the game by FS.▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
+set "CThruShields_desc=Doesn't work due to changes in the transparency system.▓▓▓▓▒░░██████"
 set "DarkCache_desc=Not updating.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "DirectToHadron_desc=Deprecated. Closed in favor of GoToMastery.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "emote_wheel_fix_desc=Obsolete, fixed by FS.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
@@ -3312,9 +3475,11 @@ set "ENLocalizationFIXCurios_desc=Obsolete. Use Enhanced Descriptions.▓▓▓�
 set "ENLocalizationFIXTalents_desc=Obsolete. Use Enhanced Descriptions.▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "ENLocalizationFIXTraits_desc=Obsolete. Use Enhanced Descriptions.▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "graphics_options_desc=Deprecated. Use More Graphic Options.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
+set "fancy_bots_desc=Не обновляется.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████"
 set "Height Changer_desc=Obsolete, introduced into the game by FS.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "holier_revenant_desc=Not updating.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "IgnorePsykerGrenades_desc=Obsolete, fixed by FS.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
+set "InventoryInspect_desc=Not updating.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "minimap_desc=Not updating.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "ModificationIconColor_desc=Deprecated due to changes in the crafting system.▓▒░░██████"
 set "MuteInBackground_desc=Obsolete, introduced into the game by FS.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
@@ -3322,12 +3487,14 @@ set "MutePerilSounds_desc=Obsolete, introduced into the game by FS.▓▓▓▓�
 set "NoSkull_desc=Not updating. Use Numeric UI.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "OpenSteamProfile_desc=Deprecated. Closed in favor of Open Player Profile.▓▓▓▓▒░░██████"
 set "PenanceDetails_desc=Obsolete, introduced into the game by FS.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
+set "PreferAuric_desc=Obsolete.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "PrivateMissionStatus_desc=Not updating.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
-set "PsykerCriticalPerilQuiet=Not updating.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
+set "PsykaniumDefaultDifficulty_desc=Obsolete.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
+set "PsykerCriticalPerilQuiet_desc=Not updating.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "RejectInvitesWhileInMission_desc=Obsolete, introduced into the game by FS.▓▓▓▒░░██████"
 set "reroll_until_rarity_desc=Deprecated due to changes in the crafting system.▓▓▓▒░░██████"
 set "RestoreRagdollInteraction_desc=Obsolete, introduced into the game by FS.▓▓▓▓▓▒░░██████"
-set "RetainSelection=Obsolete, introduced into the game by FS.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
+set "RetainSelection_desc=Obsolete, introduced into the game by FS.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "reveal_blessings_desc=Obsolete, introduced into the game by FS.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "RULocalizationFIX_desc=Obsolete. Use Enhanced Descriptions.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "RULocalizationFIXAchievements_desc=Use Enhanced Descriptions.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
@@ -3343,11 +3510,13 @@ set "RULocalizationFIXTitles_desc=Obsolete. Use Enhanced Descriptions.▓▓▓�
 set "RULocalizationFIXWeaponnames_desc=Use Enhanced Descriptions.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "x_Enhanced_RU_Localization_desc=Use Enhanced Descriptions.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "settings_extension_desc=Only needed for outdated Graphics Options.▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
+set "sorted_mission_grid_desc=Deprecated due to changes to the Mission menu.▓▓▓▓▓▓▒░░██████"
 set "SpaceToContinue_desc=Obsolete, introduced into the game by FS.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "SpectatorHUD_desc=Obsolete, introduced into the game by FS.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
+set "TransparentShield_desc=Doesn't work due to changes in the transparency system▒░░██████"
 set "TruePeril_desc=Deprecated. Closed in favor of PerilGauge.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 set "ui_extension_desc=Not needed for anything.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
-set "which_book=Deprecated. The new version is called Distinct Side Mission Icons.▒░░██████"
+set "which_book_desc=Deprecated. The new version - Distinct Side Mission Icons.▓▓▓▒░░██████"
 set "WhichMissions_desc=Obsolete, introduced into the game by FS.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████"
 REM ██████░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████
 REM ██████░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░██████
@@ -3377,7 +3546,7 @@ echo █▓▒▒▒░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓+++ SERVITOR X55-P1473-R ENGAGED +++▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░█████▓▓
 echo ▓█▒░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████▓
 echo ███▓▒▓▓█░░▒▓▓▓// WARNING‼▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▒▓▓█▓░░
-echo ████████░░▒▓▓▓// OUTDATED MODS FOUND‼▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░░░░░░░
+echo ████████░░▒▓▓▓// DEPRECATED MODS FOUND‼▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░░░░░░░
 echo █████▓▒░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░
 for %%f in (
 	%mod_folders%
@@ -3420,7 +3589,7 @@ goto :MKLIST
 REM CREATE THE REST OF THE LIST OF MODS IN ALPHABETICAL ORDER, EXCLUDING BASE, DMF, ANIMATION EVENTS AND OTHER FOLDERS IN QUOTES BELOW.
 :MKLIST
 
-for /f "tokens=*" %%i in (' dir /b /ad ^|findstr /iv /c:"animation_events" /c:"Audio" /c:"base" /c:"ChatBlock" /c:"DarktideLocalServer" /c:"Do I Know You" /c:"dmf" /c:"for_the_drip" /c:"guarantee" /c:"hybrid_sprint" /c:"LogMeIn" /c:"master_item_community_patch" /c:"MultiBind" /c:"ovenproof_scoreboard_plugin" /c:"Power_DI" /c:"psych_ward" /c:"scoreboard" /c:"true_level" /c:"weapon_customization" /c:"ToggleAltFire"') do set "mydirs_%%~snxi=%%~nxi" 2>nul
+for /f "tokens=*" %%i in (' dir /b /ad ^|findstr /iv /c:"animation_events" /c:"Audio" /c:"base" /c:"CharacterGrid" /c:"ChatBlock" /c:"DarktideLocalServer" /c:"Do I Know You" /c:"dmf" /c:"for_the_drip" /c:"guarantee" /c:"hybrid_sprint" /c:"LogMeIn" /c:"master_item_community_patch" /c:"MultiBind" /c:"ovenproof_scoreboard_plugin" /c:"Power_DI" /c:"psych_ward" /c:"Reconnect" /c:"scoreboard" /c:"servo_friend" /c:"true_level" /c:"weapon_customization" /c:"ToggleAltFire"') do set "mydirs_%%~snxi=%%~nxi" 2>nul
 for /f "tokens=2 delims== eol=" %%i in (' set mydirs_ ') do 1>>mod_load_order.txt echo %%i
 
 :DONE_WORK
