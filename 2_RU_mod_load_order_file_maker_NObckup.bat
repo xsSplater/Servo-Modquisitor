@@ -2056,6 +2056,10 @@ REM ╟+ ├─Recolor Stimms							║
 REM ╟+ └─Stimms Pickup Icon						║
 REM ╟+ Teammate Tracker VS						║
 REM ╟+ └─Do I Know You							║
+REM ╟+ BetterLoadouts VS						║
+REM ╟+ └─more_characters_and_loadouts			║
+REM ╟+ better_buff_management VS				║
+REM ╟+ └─uptime									║
 REM ╚═══════════════════════════════════════════╝
 
 
@@ -3158,7 +3162,7 @@ echo.
 :AMMO_MED_MARKERS_VS_RATION_PACK
 
 if NOT exist ammo_med_markers (
-	goto Stimm_Markers_VS_Recolor_Stimms_Pickup_Icon
+	goto STIMM_MARKERS_VS_RECOLOR_STIMMS_PICKUP_ICON
 ) else (
 	if exist "Ration Pack" (
 cls
@@ -3199,21 +3203,21 @@ echo.
 				REM УДАЛЯЕМ MARKERS IMPROVED ALL-IN-ONE И ПРОДОЛЖАЕМ...
 			If Errorlevel 3 (
 				rmdir /s /q "ammo_med_markers"
-				goto Stimm_Markers_VS_Recolor_Stimms_Pickup_Icon
+				goto STIMM_MARKERS_VS_RECOLOR_STIMMS_PICKUP_ICON
 			)
 				REM УДАЛЯЕМ RATION PACK И ПРОДОЛЖАЕМ...
 			If Errorlevel 2 (
 				rmdir /s /q "Ration Pack"
-				goto Stimm_Markers_VS_Recolor_Stimms_Pickup_Icon
+				goto STIMM_MARKERS_VS_RECOLOR_STIMMS_PICKUP_ICON
 			)
 				REM ПРОДОЛЖАЕМ...
-			If Errorlevel 1 goto Stimm_Markers_VS_Recolor_Stimms_Pickup_Icon
+			If Errorlevel 1 goto STIMM_MARKERS_VS_RECOLOR_STIMMS_PICKUP_ICON
 	)
 )
 
-:Stimm_Markers_VS_Recolor_Stimms_Pickup_Icon
+:STIMM_MARKERS_VS_RECOLOR_STIMMS_PICKUP_ICON
 if NOT exist stimm_markers (
-	goto DEPRECATED_MODS
+	goto TEAMMATE_TRACKER_VS_DO_I_KNOW_YOU
 ) else (
 	if exist StimmsPickupIcon (
 cls
@@ -3254,15 +3258,15 @@ echo.
 				REM УДАЛЯЕМ STIMM MARKERS И ПРОДОЛЖАЕМ...
 			If Errorlevel 3 (
 				rmdir /s /q "stimm_markers"
-				goto Stimm_Markers_VS_Recolor_Stimms_Pickup_Icon
+				goto STIMM_MARKERS_VS_RECOLOR_STIMMS_PICKUP_ICON
 			)
 				REM УДАЛЯЕМ STIMMS PICKUP ICON И ПРОДОЛЖАЕМ...
 			If Errorlevel 2 (
 				rmdir /s /q "StimmsPickupIcon"
-				goto Stimm_Markers_VS_Recolor_Stimms_Pickup_Icon
+				goto STIMM_MARKERS_VS_RECOLOR_STIMMS_PICKUP_ICON
 			)
 				REM ПРОДОЛЖАЕМ...
-			If Errorlevel 1 goto DEPRECATED_MODS
+			If Errorlevel 1 goto TEAMMATE_TRACKER_VS_DO_I_KNOW_YOU
 	)
 	if exist RecolorStimms (
 cls
@@ -3303,21 +3307,21 @@ echo.
 				REM УДАЛЯЕМ STIMM MARKERS И ПРОДОЛЖАЕМ...
 			If Errorlevel 3 (
 				rmdir /s /q "stimm_markers"
-				goto DEPRECATED_MODS
+				goto TEAMMATE_TRACKER_VS_DO_I_KNOW_YOU
 			)
 				REM УДАЛЯЕМ RECOLOR STIMMS И ПРОДОЛЖАЕМ...
 			If Errorlevel 2 (
 				rmdir /s /q "RecolorStimms"
-				goto DEPRECATED_MODS
+				goto TEAMMATE_TRACKER_VS_DO_I_KNOW_YOU
 			)
 				REM ПРОДОЛЖАЕМ...
-			If Errorlevel 1 goto DEPRECATED_MODS
+			If Errorlevel 1 goto TEAMMATE_TRACKER_VS_DO_I_KNOW_YOU
 	)
 )
 
 :TEAMMATE_TRACKER_VS_DO_I_KNOW_YOU
 if NOT exist teammate_tracker (
-	goto DEPRECATED_MODS
+	goto BETTERLOADOUTS_VS_MORE_CHARACTERS_AND_LOADOUTS
 ) else (
 	if exist "Do I Know You" (
 cls
@@ -3358,12 +3362,177 @@ echo.
 				REM УДАЛЯЕМ TEAMMATE TRACKER И ПРОДОЛЖАЕМ...
 			If Errorlevel 3 (
 				rmdir /s /q "teammate_tracker"
-				goto DEPRECATED_MODS
+				goto BETTERLOADOUTS_VS_MORE_CHARACTERS_AND_LOADOUTS
 			)
 				REM  УДАЛЯЕМ DO I KNOW YOU И ПРОДОЛЖАЕМ...
 			If Errorlevel 2 (
 				rmdir /s /q "Do I Know You"
-				goto DML_CHECK
+				goto BETTERLOADOUTS_VS_MORE_CHARACTERS_AND_LOADOUTS
+			)
+				REM ПРОДОЛЖАЕМ...
+			If Errorlevel 1 goto BETTERLOADOUTS_VS_MORE_CHARACTERS_AND_LOADOUTS
+	)
+)
+
+:BETTERLOADOUTS_VS_MORE_CHARACTERS_AND_LOADOUTS
+if NOT exist BetterLoadouts (
+	goto BETTER_BUFF_MANAGEMENT_VS_UPTIME
+) else (
+	if exist more_characters_and_loadouts (
+cls
+color 0C
+REM Reddish 100х27
+echo.
+echo ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░███████
+echo █▓▒▒▒░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░▓▓▓▓▓██
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓+++ СЕРВИТОР X55-P1473-R ОНЛАЙН +++▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░█████▓▓
+echo ▓█▒░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████▓
+echo ███▓▒▓▓█░░▒▓▓▓▓▓▓▓// ОБНАРУЖЕНА НЕСОВМЕСТИМОСТЬ‼▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▒▓▓█▓░░
+echo ████████░░▒▓▓▓▓▓▓▓// У вас установлен мод «Better Loadouts», но также несовместимый с▓▓▓▓▓▒░░░░░░░░░
+echo █████▓▒░░░▒▓▓▓▓▓▓▓ним мод «More Characters and Loadouts»‼▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░
+echo ██▓░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░█████▒░
+echo ▓░░░░░░░░░▒▓▓▓▓▓▓▓// В мод «Teammate Tracker» встроена схожая функциональность.▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓// Лучше выбрать один из них.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████▓
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo █░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ▓░░▒▒▒░░░░▒▓▓▓▓▓▓▓++ Что будем делать? ++▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██▓▓▓██
+echo ░░░█████░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░░░░░▓█
+echo ▓░░░▒▒▒░░░▒▓▓▓▓▓▓▓[C] - Пропуск проверок для мода «Better Loadouts»...▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░█▓▒▒▓██
+echo █▓░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████▒
+echo █████░░░░░▒▓▓▓▓▓▓▓[D] - Удали мод «More Characters and Loadouts» и продолжай сортировку...▒░░██▓░░░░
+echo █████░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███░░░░
+echo ████████░░▒▓▓▓▓▓▓▓[M] - Удали мод «Better Loadouts» и продолжай...▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░░░░░░░
+echo ███▓▓▓██░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░▒▒▓▒░░
+echo ▓█▒░░░░░░░▒▓▓▓▓▓▓▓[Q] - Я проверю всё сам.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ВЫХОД‼▓▒░░██████▒
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░███████
+echo ▓▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓▓▓▓▓▓▓
+echo ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░███████
+echo.
+		Choice /c CDMQ
+				REM ВЫХОД
+			If Errorlevel 4 exit
+				REM УДАЛЯЕМ BETTER LOADOUTS И ПРОДОЛЖАЕМ...
+			If Errorlevel 3 (
+				rmdir /s /q "BetterLoadouts"
+				goto BETTER_BUFF_MANAGEMENT_VS_UPTIME
+			)
+				REM УДАЛЯЕМ MORE CHARACTERS AND LOADOUTS И ПРОДОЛЖАЕМ...
+			If Errorlevel 2 (
+				rmdir /s /q "more_characters_and_loadouts"
+				goto BETTER_BUFF_MANAGEMENT_VS_UPTIME
+			)
+				REM ПРОДОЛЖАЕМ...
+			If Errorlevel 1 goto BETTER_BUFF_MANAGEMENT_VS_UPTIME
+	)
+)
+
+:BETTER_BUFF_MANAGEMENT_VS_UPTIME
+if NOT exist better_buff_management (
+	goto COLORCODEDHEALTHBARS_VS_HEALTHBARS
+) else (
+	if exist uptime (
+cls
+color 0C
+REM Reddish 100х27
+echo.
+echo ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░███████
+echo █▓▒▒▒░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░▓▓▓▓▓██
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓+++ СЕРВИТОР X55-P1473-R ОНЛАЙН +++▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░█████▓▓
+echo ▓█▒░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████▓
+echo ███▓▒▓▓█░░▒▓▓▓▓▓▓▓// ОБНАРУЖЕНА НЕСОВМЕСТИМОСТЬ‼▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▒▓▓█▓░░
+echo ████████░░▒▓▓▓▓▓▓▓// У вас установлен мод «Better Buff Management», но также несовместимый▒░░░░░░░░░
+echo █████▓▒░░░▒▓▓▓▓▓▓▓с ним мод «Uptime»‼▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░
+echo ██▓░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░█████▒░
+echo ▓░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████▓
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo █░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ▓░░▒▒▒░░░░▒▓▓▓▓▓▓▓++ Что будем делать? ++▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██▓▓▓██
+echo ░░░█████░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░░░░░▓█
+echo ▓░░░▒▒▒░░░▒▓▓▓▓▓▓▓[C] - Пропуск проверок для мода «Better Buff Management»...▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░█▓▒▒▓██
+echo █▓░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████▒
+echo █████░░░░░▒▓▓▓▓▓▓▓[D] - Удали мод «Uptime» и продолжай сортировку...▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██▓░░░░
+echo █████░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███░░░░
+echo ████████░░▒▓▓▓▓▓▓▓[M] - Удали мод «Better Buff Management» и продолжай...▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░░░░░░░
+echo ███▓▓▓██░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░▒▒▓▒░░
+echo ▓█▒░░░░░░░▒▓▓▓▓▓▓▓[Q] - Я проверю всё сам.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ВЫХОД‼▓▒░░██████▒
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░███████
+echo ▓▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓▓▓▓▓▓▓
+echo ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░███████
+echo.
+		Choice /c CDMQ
+				REM ВЫХОД
+			If Errorlevel 4 exit
+				REM УДАЛЯЕМ BETTER BUFF MANAGEMENT И ПРОДОЛЖАЕМ...
+			If Errorlevel 3 (
+				rmdir /s /q "better_buff_management"
+				goto COLORCODEDHEALTHBARS_VS_HEALTHBARS
+			)
+				REM УДАЛЯЕМ UPTIME И ПРОДОЛЖАЕМ...
+			If Errorlevel 2 (
+				rmdir /s /q "uptime"
+				goto COLORCODEDHEALTHBARS_VS_HEALTHBARS
+			)
+				REM ПРОДОЛЖАЕМ...
+			If Errorlevel 1 goto COLORCODEDHEALTHBARS_VS_HEALTHBARS
+	)
+)
+
+:COLORCODEDHEALTHBARS_VS_HEALTHBARS
+if NOT exist ColorCodedHealthbars (
+	goto DEPRECATED_MODS
+) else (
+	if exist Healthbars (
+cls
+color 0C
+REM Reddish 100х27
+echo.
+echo ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░███████
+echo █▓▒▒▒░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░▓▓▓▓▓██
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓+++ СЕРВИТОР X55-P1473-R ОНЛАЙН +++▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░█████▓▓
+echo ▓█▒░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████▓
+echo ███▓▒▓▓█░░▒▓▓▓▓▓▓▓// ОБНАРУЖЕНА НЕСОВМЕСТИМОСТЬ‼▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▒▓▓█▓░░
+echo ████████░░▒▓▓▓▓▓▓▓// У вас установлен мод «Colored Enemy Healthbars REDUX», но также▓▓▓▓▓▓▒░░░░░░░░░
+echo █████▓▒░░░▒▓▓▓▓▓▓▓несовместимый с ним мод «Healthbars»‼▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░
+echo ██▓░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░█████▒░
+echo ▓░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████▓
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo █░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ▓░░▒▒▒░░░░▒▓▓▓▓▓▓▓++ Что будем делать? ++▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██▓▓▓██
+echo ░░░█████░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░░░░░▓█
+echo ▓░░░▒▒▒░░░▒▓▓▓▓▓▓▓[C] - Пропуск проверок для мода «Colored Enemy Healthbars REDUX»...▓▓▓▓▓▒░░█▓▒▒▓██
+echo █▓░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██████▒
+echo █████░░░░░▒▓▓▓▓▓▓▓[D] - Удали мод «Healthbars» и продолжай сортировку...▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░██▓░░░░
+echo █████░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███░░░░
+echo ████████░░▒▓▓▓▓▓▓▓[M] - Удали мод «Colored Enemy Healthbars REDUX» и продолжай...▓▓▓▓▓▓▓▓▓▒░░░░░░░░░
+echo ███▓▓▓██░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░▒▒▓▒░░
+echo ▓█▒░░░░░░░▒▓▓▓▓▓▓▓[Q] - Я проверю всё сам.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ВЫХОД‼▓▒░░██████▒
+echo ░░░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+echo ░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░███████
+echo ▓▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓▓▓▓▓▓▓
+echo ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░███████
+echo.
+		Choice /c CDMQ
+				REM ВЫХОД
+			If Errorlevel 4 exit
+				REM УДАЛЯЕМ COLORED ENEMY HEALTHBARS REDUX И ПРОДОЛЖАЕМ...
+			If Errorlevel 3 (
+				rmdir /s /q "ColorCodedHealthbars"
+				goto DEPRECATED_MODS
+			)
+				REM УДАЛЯЕМ HEALTHBARS И ПРОДОЛЖАЕМ...
+			If Errorlevel 2 (
+				rmdir /s /q "Healthbars"
+				goto DEPRECATED_MODS
 			)
 				REM ПРОДОЛЖАЕМ...
 			If Errorlevel 1 goto DEPRECATED_MODS
@@ -3508,7 +3677,7 @@ set "RULocalizationFIXTitles_desc=Устарел. Используйте Enhance
 set "RULocalizationFIXWeaponnames_desc=Используйте Enhanced Descriptions.▓▓▓▓▓▓▓▓▓▒░░███████"
 set "x_Enhanced_RU_Localization_desc=Используйте Enhanced Descriptions.▓▓▓▓▓▓▓▓▓▓▓▒░░███████"
 set "settings_extension_desc=Нужен только для устаревшего Graphics Options.▓▓▓▓▓▓▓▒░░███████"
-set "sorted_mission_grid_desc=Устарел из-за изменения меню выбора Миссий.▓▓▓▓▓▓▓▓▓▒░░███████"
+set "sorted_mission_grid_desc=Устарел. Используйте новый мод MissionGrid.▓▓▓▓▓▓▓▓▓▒░░███████"
 set "SpaceToContinue_desc=Устарел, введено ФШ в игру.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████"
 set "SpectatorHUD_desc=Устарел, введено ФШ в игру.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████"
 set "TransparentShield_desc=Не работает из-за изменений в системе прозрачности.▓▓▓▒░░███████"
