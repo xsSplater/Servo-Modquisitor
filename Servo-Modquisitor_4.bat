@@ -445,25 +445,48 @@ goto :EOF
 
 :CREATE_MOD_LOAD_ORDER
 												call :LOG "Creating mod load order header"
-(echo -- ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
- echo -- ▒▓1. If you need to add a mod manually, enter the folder name of▓▓▓▓▒
- echo -- ▒▓▓▓▓your mod below. Each new mod must be on a new line.▓▓▓▓▓▓▓▓▓▓▓▓▒
- echo -- ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
- echo -- ▒▓2. Order in the list determines the order in which mods are▓▓▓▓▓▓▓▒
- echo -- ▒▓▓▓▓loaded. The lower the mod, the higher the loading priority.▓▓▓▓▒
- echo -- ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
- echo -- ▒▓3. Do not rename the mod folder, because the folder names and▓▓▓▓▓▒
- echo -- ▒▓▓▓▓entries inside the files depend on this name.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
- echo -- ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
- echo -- ▒▓4. DO NOT list the "BASE" or "DMF" folders or you will get an▓▓▓▓▓▒
- echo -- ▒▓▓▓▓error in the game‼▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
- echo -- ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
- echo -- ▒▓5. If any mod got 'lost' during sorting and wasn't added to the▓▓▓▒
- echo -- ▒▓▓▓▓list, please let me know on my Discord or on Nexusmods:▓▓▓▓▓▓▓▓▒
- echo -- ▒▓https://discord.gg/BGZagw3xnz ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
- echo -- ▒▓https://www.nexusmods.com/warhammer40kdarktide/mods/139?tab=posts▓▒
- echo -- ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒xsSplater▒
- echo.)>mod_load_order.txt
+if "!LANGUAGE!"=="ru" (
+	(echo -- ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+	 echo -- ▒▓1. Если вам нужно добавить мод вручную, введите название папки▓▓▓▓▒
+	 echo -- ▒▓▓▓▓вашего мода ниже. Каждый новый мод обязательно с новой строки.▓▒
+	 echo -- ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
+	 echo -- ▒▓2. Расположение в списке определяет порядок загрузки модов.▓▓▓▓▓▓▓▒
+	 echo -- ▒▓▓▓▓Чем ниже мод, тем больший приоритет в загрузке у него будет.▓▓▓▒
+	 echo -- ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
+	 echo -- ▒▓3. Не переименовывайте папку мода, т.к. внутри названия папок и▓▓▓▒
+	 echo -- ▒▓▓▓▓записи внутри файлов зависят от этого названия.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
+	 echo -- ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
+	 echo -- ▒▓4. НЕ НУЖНО вносить в список папки «BASE» или «DMF» или вы▓▓▓▓▓▓▓▓▒
+	 echo -- ▒▓▓▓▓получите ошибку в игре‼▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
+	 echo -- ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
+	 echo -- ▒▓5. Если какой-то мод не попал в список, обязательно сообщите▓▓▓▓▓▓▒
+	 echo -- ▒▓▓▓▓мне об этом в моём Дискорде: https://discord.gg/BGZagw3xnz ▓▓▓▓▒
+	 echo -- ▒▓▓▓▓или на странице мода на сайте Nexusmods:▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
+	 echo -- ▒▓▓▓▓https://www.nexusmods.com/warhammer40kdarktide/mods/139 ▓▓▓▓▓▓▓▒
+	 echo -- ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒xsSplater▒
+	 echo.)>mod_load_order.txt
+) else (
+	(echo -- ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+	 echo -- ▒▓1. If you need to add a mod manually, enter the folder name of▓▓▓▓▒
+	 echo -- ▒▓▓▓▓your mod below. Each new mod must be on a new line.▓▓▓▓▓▓▓▓▓▓▓▓▒
+	 echo -- ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
+	 echo -- ▒▓2. Order in the list determines the order in which mods are▓▓▓▓▓▓▓▒
+	 echo -- ▒▓▓▓▓loaded. The lower the mod, the higher the loading priority.▓▓▓▓▒
+	 echo -- ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
+	 echo -- ▒▓3. Do not rename the mod folder, because the folder names and▓▓▓▓▓▒
+	 echo -- ▒▓▓▓▓entries inside the files depend on this name.▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
+	 echo -- ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
+	 echo -- ▒▓4. DO NOT list the "BASE" or "DMF" folders or you will get an▓▓▓▓▓▒
+	 echo -- ▒▓▓▓▓error in the game‼▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
+	 echo -- ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
+	 echo -- ▒▓5. If any mod got 'lost' during sorting and wasn't added to the▓▓▓▒
+	 echo -- ▒▓▓▓▓list, please let me know on my Discord or on Nexusmods:▓▓▓▓▓▓▓▓▒
+	 echo -- ▒▓https://discord.gg/BGZagw3xnz ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
+	 echo -- ▒▓https://www.nexusmods.com/warhammer40kdarktide/mods/139?tab=posts▓▒
+	 echo -- ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒xsSplater▒
+	 echo.)>mod_load_order.txt
+)
+
 												call :LOG "Adding mandatory mods"
 call :ADD_MANDATORY_MODS
 												call :LOG "Adding remaining mods"  
@@ -552,7 +575,7 @@ goto :EOF
 REM Очищаем временные переменные
 for /f "delims==" %%v in ('set mydirs_ 2^>nul') do set "%%v="
 
-REM Создаем временный файл с исключениями
+REM Создаем временный файл с ИСКЛЮЧЕНИЯМИ
 echo base> exclude.tmp
 echo dmf>> exclude.tmp
 echo CharacterGrid>> exclude.tmp
@@ -1324,26 +1347,9 @@ if exist "ShowEquippedInLobby\" if exist "Mission Lobby - Show Ranged Weapons\" 
 )
 		REM ████░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
 		REM ████░░▒▓▓Markers Improved All-in-One VS▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
-		REM ████░░▒▓▓├─Ration Pack▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
 		REM ████░░▒▓▓├─Found Ya▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
+		REM ████░░▒▓▓├─Ration Pack▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
 		REM ████░░▒▓▓└─Stimms Pickup Icon▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░███████
-if exist "markers_aio\" if exist "Ration Pack\" (
-	set "INCOMPATIBLE_FOUND=1"
-	set "MOD1=Ration Pack" && set "MOD1_Name=Ration Pack"
-	set "MOD2=markers_aio" && set "MOD2_Name=Markers Improved All-In-One" && set "MOD2_Name3=Markers Improved AIO"
-	if "!LANGUAGE!"=="ru" (
-						  set "DESC1=«!MOD2_Name!» и «!MOD1_Name!» несовместимы‼▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░"
-						  set "DESC2=«!MOD2_Name!» имеет в себе функционал мода «!MOD1_Name!».▓▓▓▒░░▓▓▒░░░░"
-					  set "MOD1_Name2=Ration Pack▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░"
-					  set "MOD2_Name2=Markers Improved All-In-One▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░"
-	) else (
-						  set "DESC1='!MOD2_Name!' and '!MOD1_Name!' are incompatible‼▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░"
-				  set "DESC2='!MOD2_Name3!' already includes all functionality of '!MOD1_Name!'.▓▒░░▓▓▒░░░░"
-						  set "MOD1_Name2=Ration Pack▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░"
-						  set "MOD2_Name2=Markers Improved All-In-One▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░"
-	)
-	goto :EOF
-)
 if exist "markers_aio\" if exist "FoundYa\" (
 	set "INCOMPATIBLE_FOUND=1"
 	set "MOD1=FoundYa" && set "MOD1_Name=Found Ya"
@@ -1357,6 +1363,23 @@ if exist "markers_aio\" if exist "FoundYa\" (
 					   set "DESC1='!MOD2_Name!' and '!MOD1_Name!' are incompatible‼▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░"
 			   set "DESC2='!MOD2_Name3!' already includes all functionality of '!MOD1_Name!'.▓▓▓▓▒░░▓▓▒░░░░"
 						  set "MOD1_Name2=Found Ya▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░"
+						  set "MOD2_Name2=Markers Improved All-In-One▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░"
+	)
+	goto :EOF
+)
+if exist "markers_aio\" if exist "Ration Pack\" (
+	set "INCOMPATIBLE_FOUND=1"
+	set "MOD1=Ration Pack" && set "MOD1_Name=Ration Pack"
+	set "MOD2=markers_aio" && set "MOD2_Name=Markers Improved All-In-One" && set "MOD2_Name3=Markers Improved AIO"
+	if "!LANGUAGE!"=="ru" (
+						  set "DESC1=«!MOD2_Name!» и «!MOD1_Name!» несовместимы‼▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░"
+						  set "DESC2=«!MOD2_Name!» имеет в себе функционал мода «!MOD1_Name!».▓▓▓▒░░▓▓▒░░░░"
+					  set "MOD1_Name2=Ration Pack▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░"
+					  set "MOD2_Name2=Markers Improved All-In-One▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░"
+	) else (
+						  set "DESC1='!MOD2_Name!' and '!MOD1_Name!' are incompatible‼▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░"
+				  set "DESC2='!MOD2_Name3!' already includes all functionality of '!MOD1_Name!'.▓▒░░▓▓▒░░░░"
+						  set "MOD1_Name2=Ration Pack▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░"
 						  set "MOD2_Name2=Markers Improved All-In-One▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓▒░░░░"
 	)
 	goto :EOF
